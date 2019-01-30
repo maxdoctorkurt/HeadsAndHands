@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HeadsAndHandsTest</string>
+    <string name="authorization">Authorization</string>
+    <string name="email">E-mail</string>
+    <string name="login_button_text">Login</string>
+    <string name="password">Password</string>
+</resources>
