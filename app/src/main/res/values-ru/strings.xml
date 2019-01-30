@@ -8,9 +8,14 @@
     <string name="create">Создать</string>
     <string name="unknown_error">Неизвестная ошибка</string>
     <string name="check_internet">Проверьте интернет соединение</string>
-    <string name="invalid_email_fromat">Неправильный формат электронного адреса</string>
+    <string name="invalid_email_format">Неправильный формат электронного адреса</string>
     <string name="password_lowercase">Пароль должнен содержать строчную букву</string>
     <string name="password_digit">Пароль должен содержать цифры</string>
     <string name="password_capital">Пароль должен содержать заглавную букву</string>
     <string name="password_too_short">Слишком короткий пароль (6 или более символов)</string>
+    <string name="help">Помощь</string>
+    <string name="password_help_dialog_message">Минимум 6 символов. Пароль должен содержать одну или более цифру, строчную и заглавную букву.
+    </string>
+    <string name="ok">OK</string>
+    <string name="new_user_created_fake">Создан новый пользователь</string>
 </resources>

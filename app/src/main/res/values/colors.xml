@@ -10,7 +10,9 @@
     <color name="design_blue_accent">#4e92df</color>
     <color name="tangerine">#ff9b00</color>
     <color name="transparent_debug">#ddff9b00</color>
-
+    <color name="grey_transparent">#dddddddd</color>
+    <color name="grey_button_disabled">#66000000</color>
+    <color name="transparent">#00000000</color>
 
     <color name="red_50">#FFEBEE</color>
     <color name="red_100">#FFCDD2</color>
@@ -287,5 +289,5 @@
 
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
-    <color name="grey_transparent_ripple">#dddddddd</color>
+
 </resources>

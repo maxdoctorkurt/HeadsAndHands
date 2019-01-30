@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"/>
 
     <Button
+            android:id="@+id/newAccountCreateButton"
             android:clickable="true"
             android:focusable="true"
             style="?android:attr/borderlessButtonStyle"

@@ -7,9 +7,14 @@
     <string name="create">Create</string>
     <string name="unknown_error">Unknown error</string>
     <string name="check_internet">Check internet connection</string>
-    <string name="invalid_email_fromat">Invalid e-mail format</string>
+    <string name="invalid_email_format">Invalid e-mail format</string>
     <string name="password_lowercase">Password must have at least one lower case letter</string>
     <string name="password_digit">Password must have at least one digit</string>
     <string name="password_capital">Password must have at least one capital letter</string>
     <string name="password_too_short">Password is too short (needs six or more symbols)</string>
+    <string name="help">Help</string>
+    <string name="password_help_dialog_message">At least 6 characters. The password must contain one or more numbers, lowercase and uppercase letters.
+    </string>
+    <string name="ok">OK</string>
+    <string name="new_user_created_fake">New user created</string>
 </resources>

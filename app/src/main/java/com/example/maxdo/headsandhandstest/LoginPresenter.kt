@@ -13,6 +13,9 @@ class LoginPresenter : BasePresenter<LoginView, LoginViewState, LoginPartialStat
 
     val api = App.instance?.apiCalls?.api
 
+    var loginFirstChecked = false
+    var passwordFirstChecked = false
+
     override fun bindIntents() {
 
         val initialState = LoginViewState()
@@ -21,7 +24,7 @@ class LoginPresenter : BasePresenter<LoginView, LoginViewState, LoginPartialStat
             .debounce(DEBOUNCE_MILLIS, TimeUnit.MILLISECONDS)
             .observeOn(Schedulers.io())
             .map {
-                LoginPartialState.Login(if (checkMail(it)) null else EError.INVALID_EMAIL_FORMAT)
+                LoginPartialState.Login(!mailIsValid(it))
             }
 
         val partialPassword: Observable<LoginPartialState> = intent(LoginView::getPasswordChangeIntent)
@@ -51,19 +54,26 @@ class LoginPresenter : BasePresenter<LoginView, LoginViewState, LoginPartialStat
 
     override fun stateReducer(viewState: LoginViewState, partialState: LoginPartialState): LoginViewState {
 
-
-        if(partialState is LoginPartialState.Login) {
-            viewState.error = partialState.error
+        if (partialState is LoginPartialState.Login) {
+            viewState.mailError = partialState.mailError
+            viewState.networkError = false
+            viewState.weatherShortMessage = null
+            viewState.loginButtonActive = !viewState.mailError && viewState.passwordError == null && loginFirstChecked
+            loginFirstChecked = true
             return viewState
         }
 
-        if(partialState is LoginPartialState.Password) {
-            viewState.error = partialState.error
+        if (partialState is LoginPartialState.Password) {
+            viewState.passwordError = partialState.passwordError
+            viewState.networkError = false
+            viewState.weatherShortMessage = null
+            viewState.loginButtonActive = !viewState.mailError && viewState.passwordError == null && passwordFirstChecked
+            passwordFirstChecked = true
             return viewState
         }
 
-        if(partialState is LoginPartialState.WeatherShortDescription) {
-            viewState.error = partialState.error
+        if (partialState is LoginPartialState.WeatherShortDescription) {
+            viewState.networkError = partialState.networkError
             viewState.weatherShortMessage = partialState.weather
             return viewState
         }
@@ -72,19 +82,19 @@ class LoginPresenter : BasePresenter<LoginView, LoginViewState, LoginPartialStat
 
     }
 
-    private fun checkMail(email: String): Boolean {
+    private fun mailIsValid(email: String): Boolean {
         val mailNotEmpty = email.isNotEmpty()
         val emailRegExp = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})"
         return emailRegExp.toRegex().matches(email) && mailNotEmpty
     }
 
 
-    private fun checkPassword(password: String): EError? {
+    private fun checkPassword(password: String): EPasswordError? {
         return when {
-            password.length < 6 -> EError.PASSWORD_AT_LEAST_6_SYMBOLS
-            !password.contains("[A-ZА-ЯЁ]".toRegex()) -> EError.PASSWORD_AT_LEAST_ONE_CAPITAL
-            !password.contains("[0-9]".toRegex()) -> EError.PASSWORD_AT_LEAST_ONE_DIGIT
-            !password.contains("[a-zа-яё]".toRegex()) -> EError.PASSWORD_AT_LEAST_ONE_LOWERCASE
+            password.length < 6 -> EPasswordError.PASSWORD_AT_LEAST_6_SYMBOLS
+            !password.contains("[A-ZА-ЯЁ]".toRegex()) -> EPasswordError.PASSWORD_AT_LEAST_ONE_CAPITAL
+            !password.contains("[0-9]".toRegex()) -> EPasswordError.PASSWORD_AT_LEAST_ONE_DIGIT
+            !password.contains("[a-zа-яё]".toRegex()) -> EPasswordError.PASSWORD_AT_LEAST_ONE_LOWERCASE
             else -> {
                 // OK!
                 null
@@ -99,25 +109,25 @@ class LoginPresenter : BasePresenter<LoginView, LoginViewState, LoginPartialStat
 
         if (weather != null) {
             result = weather.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).cache().flatMap {
-                return@flatMap Single.just(LoginPartialState.WeatherShortDescription("${it.name} - ${it.weather[0]}") as LoginPartialState)
+                return@flatMap Single.just(LoginPartialState.WeatherShortDescription("${it.name} - ${it.weather[0].description}") as LoginPartialState)
             }
                 .onErrorResumeNext {
                     Single.just(
                         LoginPartialState.WeatherShortDescription(
                             null,
-                            EError.CHECK_INTERNET_CONNECTION
+                            true
                         )
                     )
                 }
             return result
         }
-        return Single.just(LoginPartialState.WeatherShortDescription(null, EError.UNKNOWN_ERROR))
+        return Single.just(LoginPartialState.WeatherShortDescription(null, true))
     }
 
 }
 
 sealed class LoginPartialState {
-    class Login(val error: EError?) : LoginPartialState()
-    class Password(val error: EError?) : LoginPartialState()
-    class WeatherShortDescription(val weather: String?, val error: EError? = null) : LoginPartialState()
+    class Login(val mailError: Boolean) : LoginPartialState()
+    class Password(val passwordError: EPasswordError?) : LoginPartialState()
+    class WeatherShortDescription(val weather: String?, val networkError: Boolean = false) : LoginPartialState()
 }
