@@ -58,7 +58,7 @@ class LoginPresenter : BasePresenter<LoginView, LoginViewState, LoginPartialStat
             viewState.mailError = partialState.mailError
             viewState.networkError = false
             viewState.weatherShortMessage = null
-            viewState.loginButtonActive = !viewState.mailError && viewState.passwordError == null && loginFirstChecked
+            viewState.loginButtonActive = !viewState.mailError && viewState.passwordError == null && loginFirstChecked && passwordFirstChecked
             loginFirstChecked = true
             return viewState
         }
@@ -67,7 +67,7 @@ class LoginPresenter : BasePresenter<LoginView, LoginViewState, LoginPartialStat
             viewState.passwordError = partialState.passwordError
             viewState.networkError = false
             viewState.weatherShortMessage = null
-            viewState.loginButtonActive = !viewState.mailError && viewState.passwordError == null && passwordFirstChecked
+            viewState.loginButtonActive = !viewState.mailError && viewState.passwordError == null && loginFirstChecked && passwordFirstChecked
             passwordFirstChecked = true
             return viewState
         }
