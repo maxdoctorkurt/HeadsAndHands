@@ -7,9 +7,4 @@
         </shape>
     </item>
 
-    <!--<item android:id="@android:id/background">-->
-        <!--<shape android:shape="rectangle">-->
-            <!--<solid android:color="@color/tangerine" />-->
-        <!--</shape>-->
-    <!--</item>-->
 </ripple>
