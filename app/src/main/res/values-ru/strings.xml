@@ -6,4 +6,11 @@
     <string name="login_button_text">Войти</string>
     <string name="password">Пароль</string>
     <string name="create">Создать</string>
+    <string name="unknown_error">Неизвестная ошибка</string>
+    <string name="check_internet">Проверьте интернет соединение</string>
+    <string name="invalid_email_fromat">Неправильный формат электронного адреса</string>
+    <string name="password_lowercase">Пароль должнен содержать строчную букву</string>
+    <string name="password_digit">Пароль должен содержать цифры</string>
+    <string name="password_capital">Пароль должен содержать заглавную букву</string>
+    <string name="password_too_short">Слишком короткий пароль (6 или более символов)</string>
 </resources>

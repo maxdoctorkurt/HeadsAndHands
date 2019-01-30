@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loginRootView"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -82,6 +83,7 @@
     </FrameLayout>
 
     <Button
+            android:id="@+id/loginButton"
             app:layout_constraintLeft_toLeftOf="@id/guidelineRight"
             app:layout_constraintRight_toRightOf="@id/guideline"
             app:layout_constraintStart_toStartOf="@+id/guideline"

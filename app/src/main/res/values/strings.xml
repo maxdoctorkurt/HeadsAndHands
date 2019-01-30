@@ -5,4 +5,11 @@
     <string name="login_button_text">Login</string>
     <string name="password">Password</string>
     <string name="create">Create</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="check_internet">Check internet connection</string>
+    <string name="invalid_email_fromat">Invalid e-mail format</string>
+    <string name="password_lowercase">Password must have at least one lower case letter</string>
+    <string name="password_digit">Password must have at least one digit</string>
+    <string name="password_capital">Password must have at least one capital letter</string>
+    <string name="password_too_short">Password is too short (needs six or more symbols)</string>
 </resources>
