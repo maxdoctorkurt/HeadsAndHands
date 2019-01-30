@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:paddingStart="16dp"
+        android:background="@color/white"
+        android:paddingEnd="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+    <FrameLayout
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/button_ripple_shared"
+            android:id="@+id/toolbar_arrow_back"
+            android:layout_width="24dp" android:layout_height="24dp">
+
+        <ImageView
+                android:layout_gravity="center"
+                android:src="@drawable/arrow_back" android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:contentDescription="@null" />
+    </FrameLayout>
+
+    <TextView
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/greyish_brown"
+            android:text="@string/authorization"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            android:clickable="true"
+            android:focusable="true"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/button_ripple_shared"
+            android:text="@string/create"
+            android:textColor="@color/design_blue_accent"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+</LinearLayout>
